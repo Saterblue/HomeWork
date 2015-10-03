@@ -1,5 +1,5 @@
 public class UserList {
-  public static User[] arr=new User[99];
+	public static User[] arr=new User[99];
 	private static UserList list=new UserList();
 	private UserList(){
 		arr[0]=new User("Admin","Admin");
@@ -38,7 +38,7 @@ public class UserList {
 	}
 /*验证用户名和密码,返回用户的等级
 返回的是-1，则没有该用户，返回-2表明密码不匹配
-返回0表示普通用户，返回1表示管理员用户
+返回用户登录权限，0表示普通用户，返回1表示管理员用户
 */
 	public static int checkUser(String name,String password){
 		int index=searchList(name);
@@ -47,9 +47,11 @@ public class UserList {
 		}
 		else{
 			if(!password.equals(arr[index].getPassword())) {
-				return -2;
+				return -2;//用户名和密码不一致
 			}
-			return arr[index].getLevel();
+			else {
+				return arr[index].getLevel();//返回用户登录权限
+			}
 		}
 	}
 }
